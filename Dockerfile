@@ -69,5 +69,5 @@ VOLUME ["/hive"]
 EXPOSE 8080
 
 COPY start-zeppelin.sh bin
-
+RUN ln -s -f /bin/true /usr/bin/chfn
 ENTRYPOINT ["bin/start-zeppelin.sh"]
