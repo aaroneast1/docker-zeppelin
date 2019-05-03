@@ -11,7 +11,7 @@ export ZEPPELIN_MEM="$ZEPPELIN_MEM"            		# Zeppelin jvm mem options Defa
 #### Spark interpreter configuration ####
 
 export SPARK_HOME=/usr/local/spark
-export ZEPPELIN_SPARK_SCHEDULER_MODE="FAIR"
+export ZEPPELIN_SPARK_SCHEDULER_MODE="FIFO"
 export SPARK_SUBMIT_OPTIONS="--driver-memory $ZEPPELIN_SPARK_DRIVER_MEMORY --conf spark.ui.port=$ZEPPELIN_SPARK_UI_PORT --conf spark.scheduler.mode=$ZEPPELIN_SPARK_SCHEDULER_MODE"
 
 # Options read in YARN client mode
