@@ -69,7 +69,7 @@ then
   # ./dev/change_scala_version.sh 2.11
   mvn -e clean package -DskipTests -Pbuild-distr | perl -ne 'print if $. % 10 == 1'
 else
-  mvn -e clean package -Pspark-$zeppelin_spark_version -Phadoop-$zeppelin_hadoop_version -DskipTests -Pbuild-distr | perl -ne 'print if $. % 100 == 1'
+  mvn -e clean package -Pspark-$zeppelin_spark_version -Phadoop-$zeppelin_hadoop_version -DskipTests -Pbuild-distr -Pscala-2.11 | perl -ne 'print if $. % 100 == 1'
 fi
 cd ..
 ls -l zeppelin/zeppelin-distribution/target
