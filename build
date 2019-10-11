@@ -63,7 +63,7 @@ mv spark-* spark
 git clone https://github.com/apache/zeppelin.git zeppelin
 cd zeppelin
 git checkout $zeppelin_version
-if [[ "$zeppelin_spark_version" == "2.3" ]] && [[ ! "$zeppelin_version" =~ "0.8" ]]
+if [[ "$zeppelin_spark_version" == "2.3" ]]
 then
   # https://github.com/apache/zeppelin/pull/2880
   # ./dev/change_scala_version.sh 2.11
