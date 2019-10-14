@@ -72,7 +72,6 @@ else
   mvn -e clean package -Pspark-$zeppelin_spark_version -Phadoop-$zeppelin_hadoop_version -DskipTests -Pbuild-distr -Pscala-2.11 | perl -ne 'print if $. % 100 == 1'
 fi
 cd ..
-ls -l zeppelin/zeppelin-distribution/target
 mv zeppelin/zeppelin-distribution/target/zeppelin-*.tar.gz zeppelin_dist.tar.gz
 rm -rf zeppelin
 tar -xzf zeppelin_dist.tar.gz
