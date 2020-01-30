@@ -58,7 +58,7 @@ ADD spark /usr/local/spark
 ADD zeppelin /usr/local/zeppelin
 WORKDIR /usr/local/zeppelin
 
-RUN rm -rf conf
+#RUN rm -rf conf
 
 COPY conf.templates conf.templates
 
