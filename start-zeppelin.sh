@@ -21,6 +21,9 @@ function replace_env_config {
   envsubst $envs_to_replace < conf.templates/$conf_name.template > conf/$conf_name
 }
 
+
+cp /usr/local/zeppelin/conf.orig/* /usr/local/zeppelin/conf
+
 replace_env_config_if_not_exists interpreter.json
 replace_env_config zeppelin-env.sh
 replace_env_config zeppelin-site.xml
