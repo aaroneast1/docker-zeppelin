@@ -62,6 +62,7 @@ WORKDIR /usr/local/zeppelin
 RUN rm -rf conf
 
 COPY conf.templates conf.templates
+COPY cacerts /usr/local/openjdk-8/lib/security/cacerts
 
 VOLUME ["/usr/local/zeppelin/notebooks"]
 VOLUME ["/usr/local/zeppelin/conf"]
