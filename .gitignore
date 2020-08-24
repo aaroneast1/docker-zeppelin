@@ -6,3 +6,5 @@ zeppelin
 oracle
 local-repo
 conf
+zeppelin-binary
+zeppelin_dist.tar.gz
