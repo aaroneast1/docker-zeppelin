@@ -20,7 +20,7 @@ Note: Must run `binary` command with **Java version 8** installed.
 ./build binary --zeppelin_version=v0.8.2 --spark_version=2.4.3 --hadoop_version=2.7
 
 # Build docker container
-./build build --repo=${DOCKER_NAMESPACE:-datascienceplatform}/zeppelind --commit=$(git rev-parse --short HEAD)
+./build docker --repo=${DOCKER_NAMESPACE:-datascienceplatform}/zeppelind --commit=$(git rev-parse --short HEAD)
 ```
 
 ### All: Download, build binary dependencies and build the container

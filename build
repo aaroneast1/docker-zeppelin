@@ -123,6 +123,18 @@ goal_download(){
   
 }
 
+function goal_shiro(){
+  echoCheck "Cloning shiro & building shiro library"
+
+  if [ ! -d "$SCRIPT_DIR/shiro-remote-user" ]; then
+    git clone git@github.com:leighklotz/shiro-remote-user.git "$SCRIPT_DIR/shiro-remote-user"
+  fi
+
+  pushd ${SCRIPT_DIR}/shiro-remote-user > /dev/null
+      mvn clean install 
+  popd > /dev/null
+}
+
 goal_binary(){
   while [ $# -gt 0 ]; do
     case "$1" in
@@ -249,6 +261,7 @@ goal_all(){
   done
 
   goal_prepare
+  goal_shiro
   goal_download --spark_version="$SPARK_VERSION" --hadoop_version="$HADOOP_VERSION" --zeppelin_version="$ZEPPELIN_VERSION"
   goal_binary --spark_version="$SPARK_VERSION" --hadoop_version="$HADOOP_VERSION" --zeppelin_version="$ZEPPELIN_VERSION"
   goal_docker --repo="${DOCKER_NAMESPACE:-datascienceplatform}/zeppelind" --commit="$(git rev-parse --short HEAD)"
@@ -262,6 +275,7 @@ else
 goal:
     clean         -- Remove all downloads
     prepare       -- Check script dependencies
+    shiro         -- Clone shiro project and build lib
     download      -- Download dependencies
     binary        -- Build libs for Zeppelin
 
