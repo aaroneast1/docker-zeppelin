@@ -58,17 +58,17 @@ ADD spark /usr/local/spark
 
 ADD zeppelin-binary /usr/local/zeppelin
 
-# Copy shiro library
-COPY conf/shiro.ini /zeppelin/conf
-COPY conf/log4j.properties /zeppelin/conf
-COPY conf/zeppelin-site.xml /zeppelin/conf
-COPY shiro-remote-user/target/shiro-remote-user-0.0.1-SNAPSHOT.jar /zeppelin/lib
-
 WORKDIR /usr/local/zeppelin
 
 RUN rm -rf conf
 
 COPY conf.templates conf.templates
+
+# Copy shiro library
+COPY conf/shiro.ini /zeppelin/conf
+COPY conf/log4j.properties /zeppelin/conf
+COPY conf/zeppelin-site.xml /zeppelin/conf
+COPY shiro-remote-user/target/shiro-remote-user-0.0.1-SNAPSHOT.jar /zeppelin/lib
 
 VOLUME ["/usr/local/zeppelin/notebooks"]
 VOLUME ["/usr/local/zeppelin/conf"]

@@ -35,6 +35,7 @@ You can either start the image directly with Docker, or use the [Nomad-Docker-Wr
 
 ```bash
 docker run -p 8080:8080 \
+  -e ZEPPELIN_USER_TYPE=singleuser \
   -e ZEPPELIN_SPARK_MASTER="local[*]" \
   -e ZEPPELIN_PASSWORD="secret" \
   -e ZEPPELIN_NOTEBOOK_STORAGE=org.apache.zeppelin.notebook.repo.VFSNotebookRepo \
