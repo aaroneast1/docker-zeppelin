@@ -34,7 +34,7 @@ if [ -z "$ZEPPELIN_USER_TYPE" ]; then
   exit
 else
   if [ "multiuser" == "$ZEPPELIN_USER_TYPE" ]; then
-    conf.templates/shiro.ini.remoteuserauth.template > conf/shiro.ini
+    envsubst "$envs_to_replace" < conf.templates/shiro.ini.remoteuserauth.template > conf/shiro.ini
   else
     replace_env_config shiro.ini "$ZEPPELIN_PASSWORD"
   fi
@@ -56,7 +56,7 @@ fi
 
 # add zeppelin user if not exists
 if [ -z "$ZEPPELIN_PROCESS_USER_NAME" ]; then
-  echo "Environment variable ZEPPELIN_PROCESS_USER_NAME required, but not set, exiting ..."
+  echo "Environment variable ZEPPELIN_PROCESS_USER_NAME required, but not set, exiting ..." 
   exit
 elif [ -z "$ZEPPELIN_PROCESS_USER_ID" ]; then
   echo "Environment variable ZEPPELIN_PROCESS_USER_ID required, but not set, exiting ..."
