@@ -205,7 +205,7 @@ goal_binary(){
 
   cd ..
   ls -lah
-  ls -lah zeppelin/zeppelin-distribution/target/
+  ls -lah zeppelin/
   mv zeppelin/zeppelin-distribution/target/zeppelin-*.tar.gz zeppelin_dist.tar.gz
   rm -rf zeppelin
   tar -xzf zeppelin_dist.tar.gz
