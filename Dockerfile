@@ -56,7 +56,7 @@ RUN ln -s /opt/conda/bin/python /usr/bin/python
 
 ADD spark /usr/local/spark
 
-ADD zeppelin-binary /usr/local/zeppelin
+ADD zeppelin /usr/local/zeppelin
 
 WORKDIR /usr/local/zeppelin
 

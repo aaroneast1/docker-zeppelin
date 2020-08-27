@@ -206,15 +206,15 @@ goal_binary(){
   popd > /dev/null
 
   mv zeppelin/zeppelin-distribution/target/zeppelin-*.tar.gz zeppelin_dist.tar.gz
+  rm -rf zeppelin
   tar -xzf zeppelin_dist.tar.gz
-  mv zeppelin-* zeppelin-binary
+  mv zeppelin-* zeppelin
 }
 
 goal_clean(){
   rm -rf "$SCRIPT_DIR/oracle"
   rm -rf "$SCRIPT_DIR/spark"
   rm -rf "$SCRIPT_DIR/zeppelin"
-  rm -rf "$SCRIPT_DIR/zeppelin-binary"
   rm -rf "$SCRIPT_DIR/instantclient-*"
 }
 
