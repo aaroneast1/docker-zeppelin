@@ -37,7 +37,7 @@ script:
   - export REPO=pactosystems/zeppelind
   - export NICE_BRANCH_NAME=$(echo $TRAVIS_BRANCH | sed -e 's/\//_/g')
   - ./build docker --repo="${DOCKER_NAMESPACE:-datascienceplatform}/zeppelind" --commit=$COMMIT
-  - docker tag $REPO:$COMMIT $REPO:$TAG-z$ZEPPELIN_VERSION-s$SPARK_VERSION-h$HADOOP_VERSION
+ #docker tag $REPO:$COMMIT $REPO:$TAG-z$ZEPPELIN_VERSION-s$SPARK_VERSION-h$HADOOP_VERSION
   - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER-z$ZEPPELIN_VERSION-s$SPARK_VERSION-h$HADOOP_VERSION
   - docker tag $REPO:$COMMIT $REPO:$COMMIT-z$ZEPPELIN_VERSION-s$SPARK_VERSION-h$HADOOP_VERSION
   - docker push $REPO
