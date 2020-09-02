@@ -1,4 +1,10 @@
 #!/bin/bash
+
+#
+# Initialise Zeppelin @ runtime.
+# Note: Some vars are not enclosed in quotes (") because you get number format exceptions.
+#
+
 cd /usr/local/zeppelin || exit
 
 echo "Filling Zeppelin configuration templates"
@@ -8,7 +14,7 @@ function replace_env_config_if_not_exists {
   local envs_to_replace=$2
   if [ ! -r conf/"$conf_name" ]; then
     echo "$conf_name does not exist, creating it"
-    envsubst "$envs_to_replace" < conf.templates/"$conf_name".template > conf/"$conf_name"
+    envsubst $envs_to_replace < conf.templates/"$conf_name".template > conf/"$conf_name"
   else
     echo "$conf_name already exists, not overwriting"
   fi
@@ -18,7 +24,7 @@ function replace_env_config {
   local conf_name=$1
   local envs_to_replace=$2
   echo "creating $conf_name"
-  envsubst "$envs_to_replace" < conf.templates/"$conf_name".template > conf/"$conf_name"
+  envsubst $envs_to_replace < conf.templates/"$conf_name".template > conf/"$conf_name"
 }
 
 replace_env_config_if_not_exists interpreter.json
@@ -34,7 +40,7 @@ if [ -z "$ZEPPELIN_USER_TYPE" ]; then
   exit
 else
   if [ "multiuser" == "$ZEPPELIN_USER_TYPE" ]; then
-    envsubst "$envs_to_replace" < conf.templates/shiro.ini.remoteuserauth.template > conf/shiro.ini
+    envsubst $envs_to_replace < conf.templates/shiro.ini.remoteuserauth.template > conf/shiro.ini
   else
     replace_env_config shiro.ini "$ZEPPELIN_PASSWORD"
   fi
