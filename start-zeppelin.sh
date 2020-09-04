@@ -5,6 +5,8 @@
 # Note: Some vars are not enclosed in quotes (") because you get number format exceptions.
 #
 
+set -xe
+
 cd /usr/local/zeppelin || exit
 
 echo "Filling Zeppelin configuration templates"
@@ -40,9 +42,11 @@ if [ -z "$ZEPPELIN_USER_TYPE" ]; then
   exit
 else
   if [ "multiuser" == "$ZEPPELIN_USER_TYPE" ]; then
-    envsubst $envs_to_replace < conf.templates/shiro.ini.remoteuserauth.template > conf/shiro.ini
+    echo "creating shiro.ini (multi-user)"
+    cat conf.templates/shiro.ini.remoteuserauth.template > conf/shiro.ini
   else
-    replace_env_config shiro.ini "$ZEPPELIN_PASSWORD"
+    echo "creating shiro.ini (single-user)"
+    replace_env_config shiro.ini
   fi
 fi
 
