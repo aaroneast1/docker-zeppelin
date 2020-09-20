@@ -210,6 +210,7 @@ goal_binary(){
   rm -rf zeppelin
   tar -xzf zeppelin_dist.tar.gz
   mv zeppelin-* zeppelin
+  cp shiro-remote-user/target/shiro-remote-user-*.jar zeppelin/lib/
 }
 
 goal_clean(){
