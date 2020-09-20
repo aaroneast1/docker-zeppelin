@@ -46,7 +46,7 @@ else
     cat conf.templates/shiro.ini.remoteuserauth.template > conf/shiro.ini
   else
     echo "creating shiro.ini (single-user)"
-    replace_env_config shiro.ini
+    replace_env_config shiro.ini '$ZEPPELIN_PASSWORD'
   fi
 fi
 
