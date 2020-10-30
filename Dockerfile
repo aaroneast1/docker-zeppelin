@@ -53,7 +53,7 @@ RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
   rm ~/anaconda.sh
 
 RUN /opt/conda/bin/conda install SQLAlchemy psycopg2 pymssql cx_Oracle
-RUN mv /usr/bin/python /usr/bin/python3
+RUN mv -f /usr/bin/python /usr/bin/python3
 RUN ln -s /opt/conda/bin/python /usr/bin/python
 
 ADD spark /usr/local/spark
