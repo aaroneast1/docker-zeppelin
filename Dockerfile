@@ -48,7 +48,7 @@ RUN echo '/opt/oracle/instantclient/' | tee -a /etc/ld.so.conf.d/oracle_instant_
 
 
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
-  wget --quiet https://repo.continuum.io/archive/Anaconda2-4.2.0-Linux-x86_64.sh -O ~/anaconda.sh && \
+  wget https://repo.continuum.io/archive/Anaconda2-4.2.0-Linux-x86_64.sh -O ~/anaconda.sh && \
   /bin/bash ~/anaconda.sh -b -p /opt/conda && \
   rm ~/anaconda.sh
 
@@ -58,6 +58,7 @@ RUN ln -s /opt/conda/bin/python /usr/bin/python
 ADD spark /usr/local/spark
 
 ADD zeppelin /usr/local/zeppelin
+
 WORKDIR /usr/local/zeppelin
 
 RUN rm -rf conf

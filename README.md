@@ -8,12 +8,34 @@
 
 Docker image for starting [Apache Zeppelin](https://zeppelin.apache.org/).
 
+## How to build the container
+
+Note: Must run `binary` command with **Java version 8** installed.
+
+```bash
+# Download dependencies
+./build download --zeppelin_version=v0.8.2 --spark_version=2.4.3 --hadoop_version=2.7
+
+# Build binaries
+./build binary --zeppelin_version=v0.8.2 --spark_version=2.4.3 --hadoop_version=2.7
+
+# Build docker container
+./build docker --repo=${DOCKER_NAMESPACE:-datascienceplatform}/zeppelind --commit=$(git rev-parse --short HEAD)
+```
+
+### All: Download, build binary dependencies and build the container
+
+```bash
+./build all --zeppelin_version=v0.8.2 --spark_version=2.4.3 --hadoop_version=2.7
+```
+
 ## Usage
 
 You can either start the image directly with Docker, or use the [Nomad-Docker-Wrapper](https://github.com/Data-Science-Platform/nomad-docker-wrapper) if you are running your containers on Nomad.
 
-```
+```bash
 docker run -p 8080:8080 \
+  -e ZEPPELIN_USER_TYPE=singleuser \
   -e ZEPPELIN_SPARK_MASTER="local[*]" \
   -e ZEPPELIN_PASSWORD="secret" \
   -e ZEPPELIN_NOTEBOOK_STORAGE=org.apache.zeppelin.notebook.repo.VFSNotebookRepo \
@@ -54,7 +76,7 @@ The docker image requires some environment variables to be set. They are used to
 ## Travis CI/CD
 
 These environment variables should be defined and set appropriately in your Travis CI Settings.
-https://travis-ci.org/<your travis account name>/docker-zeppelin/settings
+`https://travis-ci.org/<your travis account name>/docker-zeppelin/settings`
 
 | Variable | Description |
 | -------- | ----------- |
@@ -74,9 +96,9 @@ SQL databases are supported trough [SQLAlchemy](https://docs.sqlalchemy.org/en/l
 
 Support for additional databases can be added by installing additional [dialects](https://docs.sqlalchemy.org/en/latest/dialects/) into an anaconda environment and setting `ZEPPELIN_PYSPARK_PYTHON` to the environment location.
 
-###  Microsoft SQL Server Example
+### Microsoft SQL Server Example
 
-```
+```bash
 %spark.pyspark
 import sqlalchemy
 from sqlalchemy import create_engine
@@ -88,9 +110,9 @@ for row in res:
     print row
 ```
 
-###  PostgreSQL Example
+### PostgreSQL Example
 
-```
+```bash
 %spark.pyspark
 import sqlalchemy
 from sqlalchemy import create_engine
@@ -102,9 +124,9 @@ for row in res:
     print row
 ```
 
-###  Oracle Example
+### Oracle Example
 
-```
+```bash
 %spark.pyspark
 import sqlalchemy
 from sqlalchemy import create_engine
