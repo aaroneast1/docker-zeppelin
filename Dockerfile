@@ -20,6 +20,7 @@ RUN \
     libaio1 \
     build-essential \
     p7zip-full \
+    sssd-tools \
     unzip && \
   apt-get clean all
 
